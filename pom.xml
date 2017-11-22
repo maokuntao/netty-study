@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.taomk</groupId>
-	<artifactId>jetty-study</artifactId>
+	<artifactId>netty-study</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -12,19 +12,26 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<junit.version>4.10</junit.version>
+		<netty-all.version>4.1.17.Final</netty-all.version>
 	</properties>
 
 
-	<name>jetty learning example</name>
-	<description>jetty learning example</description>
+	<name>netty learning example</name>
+	<description>netty learning example</description>
 
 
 	<dependencies>
+<!-- 		<dependency> -->
+<!-- 			<groupId>junit</groupId> -->
+<!-- 			<artifactId>junit</artifactId> -->
+<!-- 			<version>${junit.version}</version> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
+			<version>${netty-all.version}</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
