@@ -3,6 +3,7 @@ package com.taomaokun.netty.example;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.util.ReferenceCountUtil;
 
 /**
  * <pre>
@@ -20,10 +21,16 @@ public class DiscardServerHandler extends ChannelInboundHandlerAdapter { // (1)
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) { // (2)
-		System.out.println("Received data from client.");
-		System.out.println("The type of message is : " + msg.getClass().getName());
-		// Discard the received data silently.
-		((ByteBuf) msg).release(); // (3)
+		
+		ByteBuf in = (ByteBuf) msg;
+		try {
+			while(in.isReadable()) {
+				System.out.println((char)in.readByte());
+				System.out.flush();;
+			}
+		} finally {
+			ReferenceCountUtil.release(msg); 
+		}
 	}
 
 	@Override
